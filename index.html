@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/d0deee4c58.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <div class="contenedor-nav">
+            <div class="busqueda">
+                <input type="text" placeholder="Busacar" id="buscador">
+                <div class="busqueda-ico" id="searchBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="busqueda" viewBox="0 0 30 30" width="30" height="30" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;"><defs><clipPath id="__lottie_element_2"><rect width="30" height="30" x="0" y="0"></rect></clipPath></defs><g clip-path="url(#__lottie_element_2)"><g transform="matrix(1,0,0,1,0,0.18700027465820312)" opacity="1" style="display: block;"><g opacity="1" transform="matrix(1,0,0,1,13,13)"><path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" stroke-miterlimit="10" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="2" d=" M0,-9 C-4.9710001945495605,-9 -9,-4.9710001945495605 -9,0 C-9,4.9710001945495605 -4.9710001945495605,9 0,9 C4.9710001945495605,9 9,4.9710001945495605 9,0 C9,-4.9710001945495605 4.9710001945495605,-9 0,-9z"></path></g><g opacity="1" transform="matrix(1,0,0,1,22.718000411987305,22.7189998626709)"><path stroke-linecap="round" stroke-linejoin="miter" fill-opacity="0" stroke-miterlimit="10" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="2" d=" M3.2820000648498535,3.2809998989105225 C3.2820000648498535,3.2809998989105225 -3.2809998989105225,-3.2809998989105225 -3.2809998989105225,-3.2809998989105225"></path></g></g></g></svg>
+                </div>
+            </div>
+            <div class="logo">
+                <img src="img/logo tecnocab_.png" alt="">
+            </div>
+            <div class="nombre_empresa">
+                <h1>
+                    Grupo Tecnocab
+                </h1>
+            </div>
+            <div class="contacto">
+                <button class="btncon" id="inicio"><i class="fa-solid fa-house"></i></button>
+                <button class="btncon" onclick="goToCart()"><i class="fa-solid fa-cart-shopping"><span id="cart-count">0</span></i></button>
+                <button class="btncon"><i class="fa-solid fa-users"></i></button>
+            </div>
+        </div>
+    </nav>
+    <div class="categorias" id="categoryButtons">
+        <!-- <h2>Papeleria</h2>
+        <h2>Tecnologia</h2>
+        <h2>Mobiliario</h2>
+        <h2>Limpieza</h2>
+        <h2>Ferreteria</h2>
+        <h2>Punto de venta</h2>
+        <h2>Ferreteria</h2> -->
+    </div>
+    <div class="main">
+        <div class="products" id="products">
+            </div>
+    </div>
+        <div id="productsContainer"></div>
+     <div class="contenedor-indi">
+        <div class="count-uni">
+        </div>
+        <div class="info-indi">
+        </div>
+    </div>
+
+    <footer>
+        <button id="prevPageBtn" disabled>Anterior</button>
+            <span id="currentPage"></span>
+            <button id="nextPageBtn">Siguiente</button>
+    </footer>
+
+    <script defer src="stock.js"></script>
+    <script defer src="app copy.js"></script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;500;900&display=swap');
+
+:root{
+    --Base: #252526;
+    --primario: #6590CD;
+    --secundario: #77ABD9;
+    --penul: #F2F2F2;
+    --ultimo: #e9685f;
+    --contraste: rgb(244, 255, 96);
+}
+
+*{
+    padding: 0;
+    margin: 0%;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 200;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar{
+    width: 7px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background-color: var(--azul);
+    border-radius: 50px;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.containermadre{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+nav{
+    display: flex;
+    width: 100%;
+    background-color: var(--Base);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.busqueda{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.busqueda input{
+    outline: none;
+    height: 1.7rem;
+    width: 0;
+    padding: 0 0.6rem;
+    border-radius: 0.6rem;
+    border: none;
+    transition: all 0.7s ease;
+    background-color: #ffffff;
+}
+
+.busqueda-ico{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    text-align: center;
+    transition: all .6s ease;
+    transform: translate(-0.4rem,-0.1rem);
+
+
+}
+
+.busqueda:hover input{
+    width: 8rem;
+}
+
+.filtro{
+    display: none;
+}
+
+.busqueda:hover .busqueda-ico{
+    transform:translate(7rem,-0.1rem);
+    box-shadow:rgb(83, 83, 83) 0px 0px 15px;
+    transition: all .6s ease;
+}
+
+.busqueda:hover svg{
+    transform: rotate(-360deg);
+    transition: all .8s ease;
+}
+
+.busqueda-ico svg{
+    max-width: 1.5rem;
+}
+
+.contenedor-nav{
+    display: flex;
+    align-items:center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.logo{
+    display: flex;
+}
+
+.nombre_empresa{
+    display: flex;
+    font-family: 'Kanit', sans-serif;
+}
+
+h1{
+    font-weight: 900;
+    color: white;
+    font-size: 2.2rem;
+}
+
+h2{
+    font-weight: 400;
+    margin: 1.4rem;
+}
+
+.contacto{
+    display: flex;
+    align-items: center;
+}
+
+.contacto i{
+    color: white;
+    margin: .6rem;
+    font-size: 1.3rem;
+    border-radius: 20px;
+    align-items: center;
+}
+
+.btncon{
+    border: none;
+    background-color: var(--primario);
+    border-radius: 15px;
+    margin: 0 15px;
+    transition: all .5s;
+}
+
+.btncon:hover{
+    transform: scale(1.15);
+    transition: all .5s;
+    box-shadow: rgba(0, 225, 255, 0.836) 0px 0px 17px;
+}
+
+.logo img {
+    max-width: 90px;
+}
+.contenedor-indi{
+    display: none;
+    margin: auto;
+    width: auto;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 2rem;
+}
+
+.count-uni{
+    display: flex;
+    height: auto;
+    align-items: center;
+    margin: 2rem;
+}
+
+.container-slider{
+    max-width: 400px;
+    max-height: 400px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slider{
+    display: flex;
+    width: 300%;
+    height: 390px;
+}
+
+.slider-section{
+    width: 100%
+}
+
+.slider img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.slider-btn-dere, .slider-btn-iz{
+    width: 40px;
+    height: 40px;
+    color: rgba(255, 50, 50, 0.651);
+    background-color: none;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: monospace;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    user-select: none;
+    margin: 0 7px;
+    transition: all 0.5s;
+    z-index: 22;
+}
+
+.slider-btn-dere:hover, .slider-btn-iz:hover{
+    transform: scale(1.4);
+    transition: all 0.5s;
+    color: rgb(255, 0, 0);
+}
+
+.info-indi{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 50%;
+}
+.contenedor-texto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}
+.id-cat{
+    color: rgb(56, 97, 124);
+    font-weight: 400;
+}
+
+.caracteristicas{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#product{
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+#product tr td{
+    border: 1px solid #bdc4ca;
+    padding: 4px;
+}
+
+#nombre-info{
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+#precio-info, #precio-info span{
+    font-weight: 600;
+    font-size: 4rem;
+    color: red;
+}
+
+#bodypog2{
+    flex-direction: column;
+    align-items: center;
+}
+
+#bodypog2 table{
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+}
+
+#bodypog2 thead{
+    background-color: var(--secundario);
+    color: white;
+    border-bottom: solid 5px var(--primario);
+}
+
+#bodypog2 tfoot{
+    background-color: var(--penul);
+}
+
+#bodypog2 tbody th{
+    border-bottom: solid 2px rgb(221, 221, 221);
+}
+
+#bodypog2 tfoot tr,td{
+    padding: 20px;
+}
+
+#bodypog2 th,td{
+    padding: 15px;
+    font-size: 1rem;
+}
+
+#bodypog2 td{
+    font-weight: 400;
+    color: var(--ultimo);
+}
+
+#whts,#clear-cart{
+    margin-top: 2rem;
+    cursor: pointer;
+    height: 3rem;
+    padding: 0 2rem;
+    border-radius: 1.5rem;
+    background: var(--Base);
+    color: #fff;
+    border: none;
+    transition: all 1s;
+}
+
+#whts:hover, #clear-cart:hover{
+    background-color: var(--ultimo);
+    transition: all 0.5s;
+    box-shadow: #f06c6cb2 0px 0px 20px;
+}
+
+#cantidad{
+    width: 3rem;
+    outline: none;
+    background-color: var(--penul);
+    border-radius: 1rem;
+    border: none;
+    text-align: center;
+    font-weight: 400;
+}
+
+#btn-elimi{
+    margin-left: .7rem;
+    background-color: var(--ultimo);
+    color: #fff;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: .7rem;
+    border: none;
+    transition: all 0.5s;
+}
+
+#btn-elimi:hover{
+    transform: scale(1.2);
+    transition: all 0.5s;
+    box-shadow: #e78d72 0 0 5px;
+}
+
+.contenedor-pedir{
+    display: flex;
+}
+
+.contenedor-pedir button{
+    position: relative;
+    width: 10rem;
+    font-weight: 400;
+    font-size: 1rem;
+    height: 2rem;
+    border: none;
+    cursor: pointer;
+    background-color: var(--Base);
+    transition: all 0.7s;
+    border-radius: 1rem 1rem 1rem 1rem;
+    color: rgb(255, 255, 255);
+    margin-left: .7rem;
+}
+
+.contenedor-pedir button:hover{
+    background-color: var(--secundario);
+    color: rgb(255, 255, 255);
+}
+
+.contenedor-pedir input{
+    max-width: 3.5rem;
+    font-size: 1rem;
+    height: 2rem;
+    border: none;
+    border-radius: 15px;
+    background-color: var(--penul);
+    text-align: center;
+    font-weight: 400;
+    outline: none;
+}
+
+#cart-count{
+    position: absolute;
+    color: #ffffff;
+    margin: 13px 0px 0px -4px;
+    font-size: 15px;
+    background-color: #e9685f;
+    border-radius: 1rem;
+    padding: .5rem;
+    font-weight: 400;
+}
