@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;500;900&display=swap');
+
+:root{
+    --Base: #252526;
+    --primario: #6590CD;
+    --secundario: #77ABD9;
+    --penul: #F2F2F2;
+    --ultimo: #e9685f;
+    --contraste: rgb(244, 255, 96);
+}
+
+*{
+    padding: 0;
+    margin: 0%;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 200;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar{
+    width: 7px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background-color: var(--Base);
+    border-radius: 50px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2{
+    font-weight: 400;
+    margin: 1.4rem;
+}
+
+nav{
+    display: flex;
+    width: 100%;
+    background-color: var(--Base);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.busqueda{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.busqueda input{
+    outline: none;
+    height: 1.7rem;
+    width: 0;
+    padding: 0 0.6rem;
+    border-radius: 0.6rem;
+    border: none;
+    transition: all 0.7s ease;
+    background-color: #ffffff;
+}
+
+.busqueda-ico{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    text-align: center;
+    transition: all .6s ease;
+    transform: translate(-0.4rem,-0.1rem);
+
+
+}
+
+.busqueda:hover input{
+    width: 8rem;
+}
+
+.filtro{
+    display: none;
+}
+
+.busqueda:hover .busqueda-ico{
+    transform:translate(7rem,-0.1rem);
+    box-shadow:rgb(83, 83, 83) 0px 0px 15px;
+    transition: all .6s ease;
+}
+
+.busqueda:hover svg{
+    transform: rotate(-360deg);
+    transition: all .8s ease;
+}
+
+.busqueda-ico svg{
+    max-width: 1.5rem;
+}
+
+.contenedor-nav{
+    display: flex;
+    align-items:center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.logo{
+    display: flex;
+}
+
+.nombre_empresa{
+    display: flex;
+    font-family: 'Kanit', sans-serif;
+}
+
+h1{
+    font-weight: 900;
+    color: white;
+    font-size: 2.1rem;
+}
+
+.contacto{
+    display: flex;
+    align-items: center;
+    padding: 1.2rem;
+}
+
+.contacto i{
+    color: white;
+    margin: .6rem;
+    font-size: 1.3rem;
+    border-radius: 20px;
+    align-items: center;
+}
+
+.btncon{
+    border: none;
+    background-color: var(--primario);
+    border-radius: 15px;
+    margin: 0 15px;
+    transition: all .5s;
+}
+
+.btncon:hover{
+    transform: scale(1.15);
+    transition: all .5s;
+    box-shadow: rgba(0, 225, 255, 0.836) 0px 0px 17px;
+}
+
+.logo img {
+    max-width: 90px;
+}
+
+#cart-count{
+    position: absolute;
+    color: #ffffff;
+    margin: 13px 0px 0px -4px;
+    font-size: 15px;
+    background-color: #e9685f;
+    border-radius: 1rem;
+    padding: .5rem;
+    font-weight: 400;
+}
+
+#cart{
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+}
+
+thead{
+    background-color: var(--secundario);
+    color: white;
+    border-bottom: solid 5px var(--primario);
+}
+
+tfoot{
+    background-color: var(--penul);
+}
+
+tbody th{
+    border-bottom: solid 2px rgb(221, 221, 221);
+}
+
+tfoot tr,td{
+    padding: 20px;
+}
+
+th,td{
+    padding: 15px;
+    font-size: 1rem;
+}
+
+td{
+    font-weight: 400;
+    color: var(--ultimo);
+}
+
+input{
+    text-align: center;
+    width: 5rem;
+}
+
+#whts,#clear-cart{
+    margin-top: 2rem;
+    cursor: pointer;
+    height: 3rem;
+    padding: 0 2rem;
+    border-radius: 1.5rem;
+    background: var(--Base);
+    color: #fff;
+    border: none;
+    transition: all 1s;
+}
+
+#whts:hover, #clear-cart:hover{
+    background-color: var(--ultimo);
+    transition: all 0.5s;
+    box-shadow: #f06c6cb2 0px 0px 20px;
+}
+
+#btn-elimi{
+    margin-left: .7rem;
+    background-color: var(--ultimo);
+    color: #fff;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: .7rem;
+    border: none;
+    transition: all 0.5s;
+}
+
+#btn-elimi:hover{
+    transform: scale(1.2);
+    transition: all 0.5s;
+    box-shadow: #e78d72 0 0 5px;
+}
+
+.juntos{
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width:638px){
+
+    h1{
+        font-size: 1.8rem;
+    }
+
+    th,td{
+        padding: 8px;
+        font-size: 0.6rem;
+    }
+
+    input{
+        width: 2rem;
+        text-align: center;
+    }
+    
+}

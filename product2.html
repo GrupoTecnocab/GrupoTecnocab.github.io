@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del producto</title>
     <link rel="stylesheet" href="Product.css">
     <script src="https://kit.fontawesome.com/d0deee4c58.js" crossorigin="anonymous"></script>
-    <title>Document</title>
 </head>
 <body>
     <div class="containermadre">
@@ -64,11 +61,7 @@
             <p id="precio-info"><span>$</span>${formatNumberWithCommas(product.precio)}</p>
             <div class="contenedor-pedir">
                 <input type="number" id="quantity${product.id}" value="0" min="0">
-                <div class="conte-cantidad">
-                                <button class="btn-mas" onclick="increaseQuantity(${product.id})">+</button>
-                                <button class="btn-menos" onclick="decreaseQuantity(${product.id})">-</button>
-                        </div>
-                <button class="agrega" onclick="addToCart(${product.id})">Agregar al carrito</button>
+                <button onclick="addToCart(${product.id})">Agregar al carrito</button>
             </div>
             <div class="caracteristicas">
                 <p>Características:</p>
@@ -194,21 +187,6 @@ function updateCartCount() {
     const cartCountElement = document.getElementById("cart-count");
     cartCountElement.textContent = cartCount.toString();
 }
-
-function increaseQuantity(productId) {
-    const quantityInput = document.getElementById(`quantity${productId}`);
-    const currentQuantity = parseInt(quantityInput.value);
-    quantityInput.value = (currentQuantity + 1).toString();
-  }
-  
-  // Función para decrementar la cantidad de piezas en 1
-  function decreaseQuantity(productId) {
-    const quantityInput = document.getElementById(`quantity${productId}`);
-    const currentQuantity = parseInt(quantityInput.value);
-    if (currentQuantity > 1) {
-      quantityInput.value = (currentQuantity - 1).toString();
-    }
-  }
   
   // Llama a la función para actualizar el número de productos en el carrito al cargar la página
 

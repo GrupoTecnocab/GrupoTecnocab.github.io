@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Carrito de compras</title>
-    <link rel="stylesheet" href="Product.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="carrito.css">
     <script src="https://kit.fontawesome.com/d0deee4c58.js" crossorigin="anonymous"></script>
+    <title>Document</title>
 </head>
-<body id="bodypog2">
+<body>
     <nav>
         <div class="contenedor-nav">
             <div class="busqueda">
@@ -29,6 +32,7 @@
             </div>
         </div>
     </nav>
+
     <h2>Carrito de compras</h2>
     <table id="cart">
         <thead>
@@ -51,7 +55,8 @@
 
     <button id="whts" onclick="sendCartToWhatsApp()">Enviar por WhatsApp</button>
     <button id="clear-cart" onclick="clearCart()">Limpiar carrito</button>
-    <script src="stock.js"></script>
+
+    <script defer src="stock.js"></script>
 </body>
 <script>
     // Función para cargar y mostrar los productos en el carrito
@@ -80,8 +85,10 @@ function loadCart() {
                 <th>${product.nombre}</th>
                 <th>$${product.precio}</th>
                 <th>
-                    <input id="cantidad" type="number" value="${quantity}" min="1" onchange="updateQuantity(${product.id}, this.value)">
-                    <button id="btn-elimi" onclick="removeFromCart(${product.id})"><i class="fa-solid fa-trash"></i></button>
+                    <div class="juntos">
+                        <input id="cantidad" type="number" value="${quantity}" min="1" onchange="updateQuantity(${product.id}, this.value)">
+                        <button id="btn-elimi" onclick="removeFromCart(${product.id})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
                 </th>
                 <th>$${subtotal}</th>
             `;
@@ -120,8 +127,10 @@ function loadCart() {
                 <th>${product.nombre}</th>
                 <th>$${formatNumberWithCommas(product.precio)}</th>
                 <th>
-                    <input id="cantidad" type="number" value="${quantity}" min="1" onchange="updateQuantity(${product.id}, this.value)">
-                    <button id="btn-elimi" onclick="removeFromCart(${product.id})"><i class="fa-solid fa-trash"></i></button>
+                    <div class="juntos">
+                        <input id="cantidad" type="number" value="${quantity}" min="1" onchange="updateQuantity(${product.id}, this.value)">
+                        <button id="btn-elimi" onclick="removeFromCart(${product.id})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
                 </th>
                 <th>$${formatNumberWithCommas(subtotal)}</th>
             `;
@@ -139,6 +148,7 @@ function loadCart() {
 function clearCart() {
     localStorage.removeItem('cart');
     loadCart();
+    updateCartCount()
 }
 
 
@@ -160,12 +170,14 @@ function removeFromCart(productId) {
     const updatedCart = cart.filter(item => item.product.id !== productId);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     loadCart();
+    updateCartCount()
 }
 
 // Función para vaciar el carrito
 function clearCart() {
     localStorage.removeItem('cart');
     loadCart();
+    updateCartCount()
 }
 
 // Función para enviar el carrito por WhatsApp
