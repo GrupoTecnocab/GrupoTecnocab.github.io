@@ -179,7 +179,7 @@ function sendCartToWhatsApp() {
     const product = item.product;
     const quantity = item.quantity;
     const totalPrice = product.precio * quantity;
-    message += `${product.nombre} - Cantidad: ${quantity} - Precio Unitario:$${product.precio} - Precio Total: $${totalPrice}\n`;
+    message += `${product.id} - ${product.nombre} - Cantidad: ${quantity} - Precio Unitario:$${product.precio} - Precio Total: $${totalPrice}\n`;
   });
 
   message += `\nTotal de la compra: $${total}`;
