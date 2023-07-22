@@ -28,8 +28,12 @@ function showProducts(page) {
                             <p class="precio"><span>$</span>${formatNumberWithCommas(product.precio)}</p>
                             </div>
                         <div class="contenedor-agregar">
-                            <input type="number" id="quantity${product.id}" value="0" min="0">
-                            <button onclick="addToCart(${product.id})">Agregar al carrito</button>
+                            <input type="number" id="quantity${product.id}" value="1" min="1">
+                            <div class="conte-cantidad">
+                                <button class="btn-mas" onclick="increaseQuantity(${product.id})">+</button>
+                                <button class="btn-menos" onclick="decreaseQuantity(${product.id})">-</button>
+                        </div>
+                            <button class="btn-agregar" onclick="addToCart(${product.id})">Agregar al carrito</button>
                         </div>
                         <button class="btn-mas-info" onclick="showProductDetails(${product.id})">Más información</button>
                     </div>
@@ -161,7 +165,21 @@ inicio.addEventListener("click", function() {
     }
 }
 
-
+// Función para incrementar la cantidad de piezas en 1
+function increaseQuantity(productId) {
+    const quantityInput = document.getElementById(`quantity${productId}`);
+    const currentQuantity = parseInt(quantityInput.value);
+    quantityInput.value = (currentQuantity + 1).toString();
+  }
+  
+  // Función para decrementar la cantidad de piezas en 1
+  function decreaseQuantity(productId) {
+    const quantityInput = document.getElementById(`quantity${productId}`);
+    const currentQuantity = parseInt(quantityInput.value);
+    if (currentQuantity > 1) {
+      quantityInput.value = (currentQuantity - 1).toString();
+    }
+  }
 
 // Función para redirigir al carrito de compras
 function goToCart() {
@@ -191,3 +209,5 @@ function updateCartCount() {
     return cart ? JSON.parse(cart) : [];
   }
   updateCartCount();
+
+

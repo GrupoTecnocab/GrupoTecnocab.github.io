@@ -115,12 +115,13 @@ nav{
 h1{
     font-weight: 900;
     color: white;
-    font-size: 2.2rem;
+    font-size: 2.1rem;
 }
 
 .contacto{
     display: flex;
     align-items: center;
+    padding: 1.2rem;
 }
 
 .contacto i{
@@ -263,7 +264,7 @@ h1{
     align-items: center;
 }
 
-.contenedor-agregar button{
+.contenedor-agregar .btn-agregar{
     position: relative;
     width: 8rem;
     font-weight: 500;
@@ -274,16 +275,16 @@ h1{
     transition: all 0.7s;
     border-radius: 1rem 1rem 1rem 1rem;
     color: rgb(255, 255, 255);
-    margin-left: .7rem;
+    margin-left: .2rem;
 }
 
-.contenedor-agregar button:hover{
+.contenedor-agregar .btn-agregar:hover{
     background-color: rgb(241, 240, 165);
     color: black;
 }
 
 .contenedor-agregar input{
-    max-width: 3.5rem;
+    max-width: 2.9rem;
     height: 2rem;
     border: none;
     border-radius: 15px;
@@ -316,6 +317,32 @@ h1{
 
 .btn-mas-info:active{
     transition: all 0.7s;
+}
+
+.conte-cantidad{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 0.3rem;
+}
+
+.conte-cantidad button{
+    margin: 0.1rem 0px;
+    text-align: center;
+    width: 1.6rem;
+    height: 1.5rem;
+    border: none;
+    outline: none;
+    background-color: var(--contraste);
+    border-radius: 0.6rem;
+    color: var(--Base);
+    font-weight: 400;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.conte-cantidad button:active{
+    transform: scale(0.6);
+    transition: all 0.2s;
 }
 
 #productsContainer{
@@ -369,4 +396,10 @@ footer button:hover{
     border-radius: 1rem;
     padding: .5rem;
     font-weight: 400;
+}
+
+@media (max-width:638px){
+    h1{
+        font-size: 1.6rem;
+    }
 }
