@@ -249,7 +249,6 @@ h1{
 .imagen{
     display: flex;
     margin-top: 0.2rem;
-    height: 230px;
     width: 230px;
     justify-content: center;
 }
