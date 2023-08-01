@@ -38,6 +38,7 @@
     <table id="cart">
         <thead>
             <tr>
+                <th>Imagen</th>
                 <th>Producto</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
@@ -48,7 +49,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3">Total:</td>
+                <td colspan="4">Total:</td>
                 <td id="total">$0</td>
             </tr>
         </tfoot>
@@ -83,6 +84,7 @@ function loadCart() {
             const itemElement = document.createElement('tr');
             itemElement.classList.add('cart-item');
             itemElement.innerHTML = `
+                <th>${product.img}</th>
                 <th>${product.nombre}</th>
                 <th>$${product.precio}</th>
                 <th>
@@ -125,6 +127,7 @@ function loadCart() {
             const itemElement = document.createElement('tr');
             itemElement.classList.add('cart-item');
             itemElement.innerHTML = `
+                <th><img src="${product.img}" alt=""></th>
                 <th>${product.nombre}</th>
                 <th>$${formatNumberWithCommas(product.precio)}</th>
                 <th>

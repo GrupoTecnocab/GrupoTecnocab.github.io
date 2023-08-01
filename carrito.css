@@ -251,7 +251,15 @@ input{
     flex-direction: row;
 }
 
+img{
+    max-width: 90px;
+}
+
 @media (max-width:638px){
+
+    img{
+        max-width: 60px;
+    }
 
     h1{
         font-size: 1.8rem;
