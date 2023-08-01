@@ -2,7 +2,7 @@ const products = stock
 
 // Variables globales
 let currentPage = 1;
-const productsPerPage = 15;
+const productsPerPage = 16;
 let filteredProducts = products;
 let currentCategory = null;
 
@@ -116,12 +116,14 @@ document.getElementById("buscador").addEventListener("keypress", event => {
 document.getElementById("prevPageBtn").addEventListener("click", () => {
     currentPage--;
     showProducts(currentPage);
+    window.scrollTo(0, 0);
 });
 
 // Evento de clic para la siguiente página
 document.getElementById("nextPageBtn").addEventListener("click", () => {
     currentPage++;
     showProducts(currentPage);
+    window.scrollTo(0, 0);
 });
 
 // Mostrar todos los productos al cargar la página

@@ -402,4 +402,7 @@ footer button:hover{
     h1{
         font-size: 1.6rem;
     }
+    .products{
+        grid-template-columns: repeat(auto-fill, minmax(2, 1fr));
+    }
 }
