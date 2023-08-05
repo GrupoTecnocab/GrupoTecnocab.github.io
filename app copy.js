@@ -89,11 +89,22 @@ function showCategoryButtons() {
 
 // Función para filtrar productos según el término de búsqueda
 function filterProducts(searchTerm) {
+    searchTerm = searchTerm.toLowerCase(); // Convertimos el término de búsqueda a minúsculas
+
     if (currentCategory) {
-        filteredProducts = products.filter(product => product.category === currentCategory && product.nombre.toLowerCase().includes(searchTerm.toLowerCase()));
+        filteredProducts = products.filter(product => 
+            product.category === currentCategory && (
+                product.nombre.toLowerCase().includes(searchTerm) ||
+                product.id.toString().toLowerCase().includes(searchTerm)
+            )
+        );
     } else {
-        filteredProducts = products.filter(product => product.nombre.toLowerCase().includes(searchTerm.toLowerCase()));
+        filteredProducts = products.filter(product => 
+            product.nombre.toLowerCase().includes(searchTerm) ||
+            product.id.toString().toLowerCase().includes(searchTerm)
+        );
     }
+
     currentPage = 1;
     showProducts(currentPage);
 }

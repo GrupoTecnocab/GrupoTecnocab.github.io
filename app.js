@@ -1,144 +1,215 @@
-var varable =0
+const products = stock
 
-const contenedorPro = document.getElementById('products')
-const skuIndi = document.querySelector("#id-cat")
-const Contenedorindividual = document.querySelector(".contenedor-indi");
-const textoProductos = document.querySelector(".productos-new")
+// Variables globales
+let currentPage = 1;
+const productsPerPage = 16;
+let filteredProducts = products;
+let currentCategory = null;
 
-stock.forEach((producto)=>{
-    const div = document.createElement('div')
-    div.classList.add('cuadrado')
-    div.innerHTML = `
-    <div class="imagen">
-                    <img src="${producto.img}" alt="">
-                </div>
-                <div class="info-produc">
-                    <div class="texto-producto">
-                        <p class="nombre-producto">${producto.nombre}</p>
-                        <p class="precio"><span>$</span>${producto.precio}</p>
+// Función para mostrar los productos en una página específica
+function showProducts(page) {
+    const startIndex = (page - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+    const productsToShow = filteredProducts.slice(startIndex, endIndex);
+
+    const productsContainer = document.getElementById("productsContainer");
+    productsContainer.innerHTML = "";
+
+    productsToShow.forEach(product => {
+        const productDiv = document.createElement("div");
+        productDiv.className = "cuadrado";
+        productDiv.innerHTML = `
+        <div class="imagen">
+                        <img src="${product.img}" alt="">
+                    </div>
+                    <div class="info-produc">
+                        <div class="texto-producto">
+                            <p class="nombre-producto">${product.nombre}</p>
+                            <p class="precio"><span>$</span>${formatNumberWithCommas(product.precio)}</p>
+                            </div>
+                        <div class="contenedor-agregar">
+                            <input type="number" id="quantity${product.id}" value="1" min="1">
+                            <div class="conte-cantidad">
+                                <button class="btn-mas" onclick="increaseQuantity(${product.id})">+</button>
+                                <button class="btn-menos" onclick="decreaseQuantity(${product.id})">-</button>
                         </div>
-                    <button id="info${producto.id}">Más información</button>
-                </div>
-    `
-    contenedorPro.appendChild(div)
+                            <button class="btn-agregar" onclick="addToCart(${product.id})">Agregar al carrito</button>
+                        </div>
+                        <button class="btn-mas-info" onclick="showProductDetails(${product.id})">Más información</button>
+                    </div>
+        `;
+        productsContainer.appendChild(productDiv);
+        
+    });
 
-    const boton = document.getElementById(`info${producto.id}`)
-    const bb = document.querySelector('.contenedor-indi')
+    document.getElementById("currentPage").innerText = `Página ${page} de ${Math.ceil(filteredProducts.length / productsPerPage)}`;
 
-    boton.addEventListener('click',()=>{
-        pagina2(producto.id)
-        bb.style.display="flex"
-        contenedorPro.style.display="none"
-        textoProductos.style.display="none"
-        varable=2
-    })
+    const prevPageBtn = document.getElementById("prevPageBtn");
+    const nextPageBtn = document.getElementById("nextPageBtn");
+
+    if (page === 1) {
+        prevPageBtn.disabled = true;
+    } else {
+        prevPageBtn.disabled = false;
+    }
+
+    if (page === Math.ceil(filteredProducts.length / productsPerPage)) {
+        nextPageBtn.disabled = true;
+    } else {
+        nextPageBtn.disabled = false;
+    }
+}
+
+// Función para filtrar productos por categoría
+function filterProductsByCategory(category) {
+    currentCategory = category;
+    if (category) {
+        filteredProducts = products.filter(product => product.category === category);
+    } else {
+        filteredProducts = products;
+    }
+    currentPage = 1;
+    showProducts(currentPage);
+}
+
+// Función para mostrar los botones de categoría
+function showCategoryButtons() {
+    const categoryButtons = document.getElementById("categoryButtons");
+    categoryButtons.innerHTML = "";
+
+    const categories = Array.from(new Set(products.map(product => product.category))); // Obtener categorías únicas
+
+    categories.forEach(category => {
+        const button = document.createElement("button");
+        button.innerText = category;
+        button.addEventListener("click", () => filterProductsByCategory(category));
+        categoryButtons.appendChild(button);
+    });
+}
+
+// Función para filtrar productos según el término de búsqueda
+function filterProducts(searchTerm) {
+    if (currentCategory) {
+        filteredProducts = products.filter(product => product.category === currentCategory && product.nombre.toLowerCase().includes(searchTerm.toLowerCase()));
+    } else {
+        filteredProducts = products.filter(product => product.nombre.toLowerCase().includes(searchTerm.toLowerCase()));
+    }
+    currentPage = 1;
+    showProducts(currentPage);
+}
+
+// Evento de clic para el botón de búsqueda
+document.getElementById("searchBtn").addEventListener("click", () => {
+    const searchTerm = document.getElementById("buscador").value.trim();
+    filterProducts(searchTerm);
+});
+
+// Evento de presionar Enter en el campo de búsqueda
+document.getElementById("buscador").addEventListener("keypress", event => {
+    if (event.key === "Enter") {
+        const searchTerm = event.target.value.trim();
+        filterProducts(searchTerm);
+    }
+});
+
+// Evento de clic para la página anterior
+document.getElementById("prevPageBtn").addEventListener("click", () => {
+    currentPage--;
+    showProducts(currentPage);
+    window.scrollTo(0, 0);
+});
+
+// Evento de clic para la siguiente página
+document.getElementById("nextPageBtn").addEventListener("click", () => {
+    currentPage++;
+    showProducts(currentPage);
+    window.scrollTo(0, 0);
+});
+
+// Mostrar todos los productos al cargar la página
+showProducts(currentPage);
+showCategoryButtons();
+
+
+function showProductDetails(productId) {
+    const product = products.find(product => product.id === productId);
+    if (product) {
+        // Redireccionar a la página de detalles del producto
+        window.location.href = `product.html?id=${product.id}`;
+    }
+}
+
+let inicio = document.getElementById("inicio");
+
+inicio.addEventListener("click", function() {
+    window.location.href = "index.html";
+  });
+
+  // Función para agregar un producto al carrito
+  function addToCart(productId) {
+    const selectedProduct = products.find(product => product.id === productId);
+    if (selectedProduct) {
+        const quantityInput = document.getElementById(`quantity${productId}`);
+        const quantity = parseInt(quantityInput.value);
+        if (quantity > 0) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProductIndex = cart.findIndex(item => item.product.id === productId);
+            if (existingProductIndex !== -1) {
+                cart[existingProductIndex].quantity += quantity;
+            } else {
+                cart.push({ product: selectedProduct, quantity: quantity });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Producto agregado al carrito');
+            quantityInput.value = "0";
+            updateCartCount();
+        }
+    }
+}
+
+// Función para incrementar la cantidad de piezas en 1
+function increaseQuantity(productId) {
+    const quantityInput = document.getElementById(`quantity${productId}`);
+    const currentQuantity = parseInt(quantityInput.value);
+    quantityInput.value = (currentQuantity + 1).toString();
+  }
   
+  // Función para decrementar la cantidad de piezas en 1
+  function decreaseQuantity(productId) {
+    const quantityInput = document.getElementById(`quantity${productId}`);
+    const currentQuantity = parseInt(quantityInput.value);
+    if (currentQuantity > 1) {
+      quantityInput.value = (currentQuantity - 1).toString();
+    }
+  }
+
+// Función para redirigir al carrito de compras
+function goToCart() {
+    window.location.href = 'cart.html';
+}
+
+function formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  let inicio2 = document.querySelector(".logo")
+inicio2.addEventListener("click",()=>{
+    window.location.href = 'index.html';
 })
 
-const pagina2=(producid)=>{
-    const item = stock.find((prod)=> prod.id === producid)
-
-    const infos = document.querySelector(".info-indi")
-        infos.innerHTML = `
-        <div class="contenedor-texto">
-                <p class="id-cat">SKU:${item.id}</p>
-                <p id="nombre-info">${item.nombre}</p>
-            <p id="precio-info"><span>$</span>${item.precio}</p>
-            <div class="caracteristicas">
-                <p>Características:</p>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td id="marca">Marca:</td>
-                            <td><b>Vorago</b></td>
-                        </tr>
-                        <tr>
-                            <td id="serie">Serie:</td>
-                            <td><b>Slim bay</b></td>
-                        </tr>
-                        <tr>
-                            <td id="modelo">Modelo:</td>
-                            <td><b>4</b></td>
-                        </tr>
-                        <tr>
-                            <td id="precesador">Procesador:</td>
-                            <td><b>Intel Core i5 10400</b></td>
-                        </tr>
-                        <tr>
-                            <td id="discoduro">Disco duro :</td>
-                            <td><b>120 GB SSD</b></td>
-                        </tr>
-                        <tr>
-                            <td id="memoriaram">Memoria Ram :</td>
-                            <td><b>4 GB</b></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            </div>
-        `
-
-        const sliderIndi = document.querySelector(".count-uni")
-        sliderIndi.innerHTML =`
-        <div class="slider-btn-iz" id="btn-iz">&#60</div>
-            <div class="container-slider">
-                <div class="slider" id="slider">
-                    <div class="slider-section">
-                        <img src="${item.img}" alt="" class="slider-img">
-                    </div>
-                    <div class="slider-section">
-                        <img src="${item.img2}" alt="" class="slider-img">
-                    </div>
-                    <div class="slider-section">
-                        <img src="${item.img3}" alt="" class="slider-img">
-                    </div>
-                </div>
-            </div>
-            <div class="slider-btn-dere" id="btn-dere">&#62</div>
-        `
-
-         //    slider
-
-         const slider = document.querySelector("#slider");
-         let sliderSection = document.querySelectorAll(".slider-section");
-         let sliderSectionLast = sliderSection[sliderSection.length -1];
-         
-         const btnLeft = document.querySelector("#btn-iz")
-         const btnRight = document.querySelector("#btn-dere")
-         
-         slider.insertAdjacentElement("afterbegin", sliderSectionLast);
-         slider.style.marginLeft="-100%";
-         
-         function next() {
-             let sliderSectionFirst = document.querySelectorAll(".slider-section")[0];
-             slider.style.marginLeft="-200%";
-             slider.style.transition="all 0.5s";
-             setTimeout(function(){
-                 slider.style.transition="none";
-                 slider.insertAdjacentElement("beforeend", sliderSectionFirst);
-                 slider.style.marginLeft="-100%";
-             }, 500)
-         }
-         
-         function Prev() {
-             let sliderSection = document.querySelectorAll(".slider-section");
-             let sliderSectionLast = sliderSection[sliderSection.length -1];
-             slider.style.marginLeft="0%";
-             slider.style.transition="all 0.5s";
-             setTimeout(function(){
-                 slider.style.transition="none"
-                 slider.insertAdjacentElement("afterbegin", sliderSectionLast);
-                 slider.style.marginLeft="-100%"
-             }, 500)
-         }
-         
-         btnRight.addEventListener("click", function(){
-             next()
-         })
-         
-         btnLeft.addEventListener("click", function(){
-             Prev()
-         })
-         
+function updateCartCount() {
+    const cart = getCart();
+    const cartCount = cart.length; // Obtener la longitud del arreglo para obtener el número de productos diferentes
+    const cartCountElement = document.getElementById("cart-count");
+    cartCountElement.textContent = cartCount.toString();
 }
-    
+  
+  // Llama a la función para actualizar el número de productos en el carrito al cargar la página
+
+  function getCart() {
+    const cart = localStorage.getItem("cart");
+    return cart ? JSON.parse(cart) : [];
+  }
+  updateCartCount();
+
+

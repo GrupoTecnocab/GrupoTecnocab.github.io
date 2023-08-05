@@ -21,6 +21,10 @@ html{
     scroll-behavior: smooth;
 }
 
+body{
+    background-color: #fafafa;
+}
+
 body::-webkit-scrollbar{
     width: 7px;
 }
