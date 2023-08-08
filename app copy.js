@@ -116,12 +116,11 @@ document.getElementById("searchBtn").addEventListener("click", () => {
 });
 
 // Evento de presionar Enter en el campo de búsqueda
-document.getElementById("buscador").addEventListener("keypress", event => {
-    if (event.key === "Enter") {
-        const searchTerm = event.target.value.trim();
-        filterProducts(searchTerm);
-    }
+document.getElementById("buscador").addEventListener("input", event => {
+    const searchTerm = event.target.value.trim();
+    filterProducts(searchTerm);
 });
+
 
 // Evento de clic para la página anterior
 document.getElementById("prevPageBtn").addEventListener("click", () => {
@@ -222,5 +221,32 @@ function updateCartCount() {
     return cart ? JSON.parse(cart) : [];
   }
   updateCartCount();
+
+// Manejar el evento de popstate (regresar de página)
+// Función para manejar la búsqueda y filtrar productos
+function handleSearch() {
+    const searchTerm = document.getElementById("buscador").value.trim();
+    filterProducts(searchTerm);
+}
+
+document.getElementById("buscador").addEventListener("input", handleSearch);
+
+// Manejar el evento de popstate (regresar de página)
+window.onpopstate = function(event) {
+    if (event.state) {
+        const searchTerm = event.state.searchTerm;
+        document.getElementById("buscador").value = searchTerm;
+
+        handleSearch();
+    }
+};
+
+// Función para cargar la página y mostrar los productos
+window.onload = function() {
+    const searchTerm = document.getElementById("buscador").value.trim();
+    filterProducts(searchTerm);
+};
+
+  
 
 
