@@ -222,12 +222,18 @@ function updateCartCount() {
   }
   updateCartCount();
 
-// Manejar el evento de popstate (regresar de página)
-// Función para manejar la búsqueda y filtrar productos
+  // Función para manejar la búsqueda y filtrar productos
 function handleSearch() {
     const searchTerm = document.getElementById("buscador").value.trim();
     filterProducts(searchTerm);
 }
+
+document.getElementById("searchBtn").addEventListener("click", function() {
+    handleSearch();
+
+    // Borrar el texto del campo de búsqueda
+    document.getElementById("buscador").value = "";
+});
 
 document.getElementById("buscador").addEventListener("input", handleSearch);
 
@@ -246,6 +252,14 @@ window.onload = function() {
     const searchTerm = document.getElementById("buscador").value.trim();
     filterProducts(searchTerm);
 };
+
+// Evento de regresar de página
+window.addEventListener("popstate", function() {
+    handleSearch();
+});
+
+
+
 
   
 
