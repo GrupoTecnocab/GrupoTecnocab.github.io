@@ -197,7 +197,7 @@ h1{
 
 .products{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(1rem, 1fr));
     justify-items: center;
     align-items: center;
 }
@@ -216,7 +216,7 @@ h1{
 }
 
 .cuadrado:hover{
-    transform: scale(1.07);
+    transform: scale(1.08);
     transition: all .5s ease-in-out
 }
 
@@ -407,6 +407,37 @@ footer button:hover{
         font-size: 1.6rem;
     }
     .products{
-        grid-template-columns: repeat(auto-fill, minmax(2, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(6rem, .2fr));
+    }
+    .cuadrado{
+        width: 170px;
+        margin: 1.5rem 5px;
+    }
+
+    .cuadrado:hover{
+        transform: scale(1.06);
+    }
+
+    .imagen{
+        width: 170px;
+    }
+
+    .imagen img{
+        max-width: 170px;
+        max-height: 170px;
+    }
+
+    .nombre-producto{
+        font-size: .7rem;
+    }
+
+    .contenedor-agregar .btn-agregar {
+        width: 4.5rem;
+        height: 3rem;
+        font-size: .7rem;
+    }
+
+    .btn-mas-info {
+        width: 8.2rem;
     }
 }

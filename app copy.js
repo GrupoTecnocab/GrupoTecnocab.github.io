@@ -87,28 +87,6 @@ function showCategoryButtons() {
     });
 }
 
-// Función para filtrar productos según el término de búsqueda
-function filterProducts(searchTerm) {
-    searchTerm = searchTerm.toLowerCase(); // Convertimos el término de búsqueda a minúsculas
-
-    if (currentCategory) {
-        filteredProducts = products.filter(product => 
-            product.category === currentCategory && (
-                product.nombre.toLowerCase().includes(searchTerm) ||
-                product.id.toString().toLowerCase().includes(searchTerm)
-            )
-        );
-    } else {
-        filteredProducts = products.filter(product => 
-            product.nombre.toLowerCase().includes(searchTerm) ||
-            product.id.toString().toLowerCase().includes(searchTerm)
-        );
-    }
-
-    currentPage = 1;
-    showProducts(currentPage);
-}
-
 // Evento de clic para el botón de búsqueda
 document.getElementById("searchBtn").addEventListener("click", () => {
     const searchTerm = document.getElementById("buscador").value.trim();
@@ -257,6 +235,48 @@ window.onload = function() {
 window.addEventListener("popstate", function() {
     handleSearch();
 });
+
+// Función para buscar sinónimos de una palabra
+function findSynonyms(word) {
+    const synonyms = {
+        boligrafo: ["pluma"],
+        // Agrega más sinónimos y palabras clave según tus necesidades
+    };
+
+    const lowerWord = word.toLowerCase();
+
+    for (const key in synonyms) {
+        if (synonyms[key].includes(lowerWord)) {
+            return key;
+        }
+    }
+
+    return lowerWord;
+}
+
+// Función para filtrar productos según el término de búsqueda
+function filterProducts(searchTerm) {
+    searchTerm = searchTerm.toLowerCase(); // Convertimos el término de búsqueda a minúsculas
+
+    const searchTermOrSynonym = findSynonyms(searchTerm);
+
+    if (currentCategory) {
+        filteredProducts = products.filter(product => 
+            product.category === currentCategory && (
+                product.nombre.toLowerCase().includes(searchTermOrSynonym) ||
+                product.id.toString().toLowerCase().includes(searchTermOrSynonym)
+            )
+        );
+    } else {
+        filteredProducts = products.filter(product => 
+            product.nombre.toLowerCase().includes(searchTermOrSynonym) ||
+            product.id.toString().toLowerCase().includes(searchTermOrSynonym)
+        );
+    }
+
+    currentPage = 1;
+    showProducts(currentPage);
+}
 
 
 
