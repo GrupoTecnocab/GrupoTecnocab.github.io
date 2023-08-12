@@ -429,6 +429,7 @@ footer button:hover{
 
     .nombre-producto{
         font-size: .7rem;
+        font-weight: 500;
     }
 
     .contenedor-agregar .btn-agregar {
