@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -83,8 +83,8 @@
 
         const sliderIndi = document.querySelector(".count-uni")
         sliderIndi.innerHTML =`
-        <div class="slider-btn-iz" id="btn-iz">&#60</div>
-            <div class="container-slider">
+        <div class="slider-btn slider-btn-iz" id="btn-iz">&#60</div>
+            <div class="slider-container">
                 <div class="slider" id="slider">
                     <div class="slider-section">
                         <img src="${product.img}" alt="" class="slider-img">
@@ -97,55 +97,37 @@
                     </div>
                 </div>
             </div>
-            <div class="slider-btn-dere" id="btn-dere">&#62</div>
+            <div class="slider-btn slider-btn-dere" id="btn-dere">&#62</div>
         `
 
-        const slider = document.querySelector("#slider");
-         let sliderSection = document.querySelectorAll(".slider-section");
-         let sliderSectionLast = sliderSection[sliderSection.length -1];
-         
-         const btnLeft = document.querySelector("#btn-iz")
-         const btnRight = document.querySelector("#btn-dere")
-         
-         slider.insertAdjacentElement("afterbegin", sliderSectionLast);
-         slider.style.marginLeft="-100%";
-         
-         function next() {
-             let sliderSectionFirst = document.querySelectorAll(".slider-section")[0];
-             slider.style.marginLeft="-200%";
-             slider.style.transition="all 0.5s";
-             setTimeout(function(){
-                 slider.style.transition="none";
-                 slider.insertAdjacentElement("beforeend", sliderSectionFirst);
-                 slider.style.marginLeft="-100%";
-             }, 500)
-         }
-         
-         function Prev() {
-             let sliderSection = document.querySelectorAll(".slider-section");
-             let sliderSectionLast = sliderSection[sliderSection.length -1];
-             slider.style.marginLeft="0%";
-             slider.style.transition="all 0.5s";
-             setTimeout(function(){
-                 slider.style.transition="none"
-                 slider.insertAdjacentElement("afterbegin", sliderSectionLast);
-                 slider.style.marginLeft="-100%"
-             }, 500)
-         }
-         
-         btnRight.addEventListener("click", function(){
-             next()
-         })
-         
-         btnLeft.addEventListener("click", function(){
-             Prev()
-         })
+        const slider = document.querySelector(".slider");
+const sliderItems = document.querySelectorAll(".slider-section");
+const prevBtn = document.querySelector(".slider-btn-iz");
+const nextBtn = document.querySelector(".slider-btn-dere");
 
-            } else {
-                const productDetails = document.getElementById("productDetails");
-                productDetails.innerHTML = `<p>Producto no encontrado.</p>`;
-            }
+let currentIndex = 0;
+
+function updateSlider() {
+    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % sliderItems.length;
+    updateSlider();
+}
+
+function prevSlide() {
+    currentIndex = (currentIndex - 1 + sliderItems.length) % sliderItems.length;
+    updateSlider();
+}
+
+nextBtn.addEventListener("click", nextSlide);
+prevBtn.addEventListener("click", prevSlide);
+
+// Iniciar el carrusel automáticamente
+}
         }
+
 
         let inicio = document.getElementById("inicio");
 

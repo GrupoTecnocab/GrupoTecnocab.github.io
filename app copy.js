@@ -17,11 +17,11 @@ function showProducts(page) {
 
     productsToShow.forEach(product => {
         const productDiv = document.createElement("div");
-        productDiv.className = "cuadrado";
+        productDiv.className = `cuadrado`;
         productDiv.innerHTML = `
-        <div class="imagen">
-                        <img src="${product.img}" alt="">
-                    </div>
+        <div class="imagen" onclick="showProductDetails(${product.id})"> <!-- Aplica el evento click al div de la imagen -->
+            <img src="${product.img}" alt="" data-product-id="${product.id}">
+        </div>
                     <div class="info-produc">
                         <div class="texto-producto">
                             <p class="nombre-producto">${product.nombre}</p>
@@ -277,6 +277,9 @@ function filterProducts(searchTerm) {
     currentPage = 1;
     showProducts(currentPage);
 }
+
+
+
 
 
 
