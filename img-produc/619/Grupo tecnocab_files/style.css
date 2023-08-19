@@ -362,7 +362,7 @@ footer{
     justify-content: center;
     align-items: center;
     color: #ffffff;
-    min-height: 10vh;
+    min-width: 10vh;
 }
 
 #currentPage{
@@ -391,27 +391,14 @@ footer{
     flex-wrap: wrap;
 }
 
-footer button{
-    background-color: rgb(230, 233, 53);
+#pagination button{
+    background-color: var(--primario);
     border: none;
     margin: 1rem;
-    width: 2rem;
-    height: 2rem;
+    width: 1.3rem;
+    color: white;
     font-weight: 500;
     border-radius: 25%;
-    color: #252526;
-
-}
-
-.activation{
-    background-color: #F4F4F4;
-    color: #252526;
-}
-
-#pagination button:hover{
-    background-color: rgb(240, 250, 107);
-    box-shadow: rgb(248, 255, 147) 0px 0px 13px;
-    transition: all 0.5s;
 }
 
 /* @media (max-width: 2000px) {
@@ -471,19 +458,16 @@ footer button{
         width: 8.2rem;
     }
 
-    footer{
-        flex-wrap: wrap;
-        flex-direction: column;
+    #pagination{
+        transform: scale(.9);
     }
 
-    #pagination{
-        margin: .5rem;
+    footer{
+        flex-wrap: wrap;
     }
 
     #pagination button{
         margin: 0.3rem;
-        width: 1.8rem;
-        height: 1.8rem;
     }
 
     #currentPage{

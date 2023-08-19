@@ -70,7 +70,6 @@ function filterProductsByCategory(category) {
     }
     currentPage = 1;
     showProducts(currentPage);
-    updatePaginationButtons();
 }
 
 // Función para mostrar los botones de categoría
@@ -98,7 +97,6 @@ document.getElementById("searchBtn").addEventListener("click", () => {
 document.getElementById("buscador").addEventListener("input", event => {
     const searchTerm = event.target.value.trim();
     filterProducts(searchTerm);
-    updatePaginationButtons();
 });
 
 
@@ -120,7 +118,7 @@ document.getElementById("buscador").addEventListener("input", event => {
 function updatePaginationButtons() {
     const paginationContainer = document.getElementById("pagination");
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-    const maxVisibleButtons = 9; // Número máximo de botones visibles
+    const maxVisibleButtons = 5; // Número máximo de botones visibles
 
     paginationContainer.innerHTML = ''; // Limpia los botones existentes
 
@@ -136,12 +134,6 @@ function updatePaginationButtons() {
     for (let page = startPage; page <= endPage; page++) {
         const pageButton = document.createElement("button");
         pageButton.textContent = page;
-
-        // Agregar la clase "activation" al botón de la página actual
-        if (page === currentPage) {
-            pageButton.classList.add("activation");
-        }
-
         pageButton.addEventListener("click", () => {
             currentPage = page;
             showProducts(currentPage);

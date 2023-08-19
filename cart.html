@@ -62,48 +62,7 @@
 </body>
 <script>
     // Función para cargar y mostrar los productos en el carrito
-function loadCart() {
-    console.log(item)
-    const cartItemsContainer = document.getElementById('cart-items');
-    const totalElement = document.getElementById('total');
-    let total = 0;
-
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p>No hay productos en el carrito.</p>';
-    } else {
-        cartItemsContainer.innerHTML = '';
-
-        cart.forEach(item => {
-            const product = item;
-            const quantity = item.quantity;
-            const subtotal = product.price * quantity;
-            total += subtotal;
-
-            const itemElement = document.createElement('tr');
-            itemElement.classList.add('cart-item');
-            itemElement.innerHTML = `
-                <th>${product.img}</th>
-                <th>${product.nombre}</th>
-                <th>$${product.precio}</th>
-                <th>
-                    <div class="juntos">
-                        <input id="cantidad" type="number" value="${quantity}" min="1" onchange="updateQuantity(${product.id}, this.value)">
-                        <button id="btn-elimi" onclick="removeFromCart(${product.id})"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </th>
-                <th>$${subtotal}</th>
-            `;
-
-            cartItemsContainer.appendChild(itemElement);
-        });
-    }
-
-    totalElement.textContent = `$${total.toFixed(2)}`;
-}
-
-function loadCart() {
+    function loadCart() {
     const cartItemsContainer = document.getElementById('cart-items');
     const totalElement = document.getElementById('total');
     const clearCartButton = document.getElementById('clear-cart'); // Botón para limpiar el carrito
@@ -120,9 +79,8 @@ function loadCart() {
         cart.forEach(item => {
             const product = item.product;
             const quantity = item.quantity;
-            const precioc= parseFloat(product.precio)
-            const subtotal = precioc * quantity;
-            total += subtotal
+            const subtotal = product.precio * quantity;
+            total += subtotal;
 
             const itemElement = document.createElement('tr');
             itemElement.classList.add('cart-item');
@@ -136,17 +94,23 @@ function loadCart() {
                         <button id="btn-elimi" onclick="removeFromCart(${product.id})"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </th>
-                <th>$${formatNumberWithCommas(subtotal)}</th>
+                <th>$${formatNumberWithCommas(subtotal.toFixed(1))}</th>
+                
             `;
 
             cartItemsContainer.appendChild(itemElement);
         });
 
+        const totalGeneralElement = document.getElementById('total');
+        totalGeneralElement.textContent = `$${formatNumberWithCommas(total.toFixed(1))}`;
+
         clearCartButton.style.display = 'block'; // Mostrar el botón cuando haya productos en el carrito
     }
 
-    totalElement.textContent = `$${formatNumberWithCommas(total.toFixed(2))}`;
+    updateCartCount();
 }
+
+
 
 // Función para limpiar el carrito
 function clearCart() {
