@@ -88,18 +88,19 @@ function showCategoryButtons() {
     });
 }
 
-// Evento de clic para el botón de búsqueda
-document.getElementById("searchBtn").addEventListener("click", () => {
-    const searchTerm = document.getElementById("buscador").value.trim();
-    filterProducts(searchTerm);
-});
 
 // Evento de presionar Enter en el campo de búsqueda
-document.getElementById("buscador").addEventListener("input", event => {
-    const searchTerm = event.target.value.trim();
-    filterProducts(searchTerm);
-    updatePaginationButtons();
+document.getElementById("buscador").addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        const searchTerm = event.target.value.trim();
+        filterProducts(searchTerm);
+        updatePaginationButtons();
+        document.getElementById("buscador").blur();
+        event.preventDefault(); // Prevenir el comportamiento predeterminado de la tecla "Enter" (envío del formulario)
+    }
+
 });
+
 
 
 // // Evento de clic para la página anterior
@@ -251,14 +252,18 @@ function handleSearch() {
     filterProducts(searchTerm);
 }
 
-document.getElementById("searchBtn").addEventListener("click", function() {
-    handleSearch();
+document.getElementById("buscador").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        handleSearch();
 
-    // Borrar el texto del campo de búsqueda
-    document.getElementById("buscador").value = "";
+        // Borrar el texto del campo de búsqueda
+        // document.getElementById("buscador").value = "";
+
+        event.preventDefault(); // Prevent the default behavior of the Enter key (form submission)
+    }
 });
 
-document.getElementById("buscador").addEventListener("input", handleSearch);
+// document.getElementById("buscador").addEventListener("input", handleSearch);
 
 // Manejar el evento de popstate (regresar de página)
 window.onpopstate = function(event) {

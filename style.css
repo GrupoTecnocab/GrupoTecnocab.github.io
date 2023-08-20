@@ -53,51 +53,34 @@ nav{
 .busqueda input{
     outline: none;
     height: 1.7rem;
-    width: 0;
-    padding: 0 0.6rem;
+    width: 10rem;
     border-radius: 0.6rem;
     border: none;
     transition: all 0.7s ease;
     background-color: #ffffff;
+    padding: 0rem 2rem;
 }
 
-.busqueda-ico{
+#logo_search{
     position: absolute;
     left: 0;
-    top: 0;
-    width: 2rem;
-    height: 2rem;
-    background-color: rgb(255, 255, 255);
-    border-radius: 50%;
+    width: 1.2rem;
     text-align: center;
     transition: all .6s ease;
-    transform: translate(-0.4rem,-0.1rem);
-
-
-}
-
-.busqueda:hover input{
-    width: 8rem;
+    margin: .3rem;
+    stroke: var(--secundario);
 }
 
 .filtro{
     display: none;
 }
 
-.busqueda:hover .busqueda-ico{
-    transform:translate(7rem,-0.1rem);
-    box-shadow:rgb(83, 83, 83) 0px 0px 15px;
-    transition: all .6s ease;
-}
-
 .busqueda:hover svg{
     transform: rotate(-360deg);
     transition: all .8s ease;
+    
 }
 
-.busqueda-ico svg{
-    max-width: 1.5rem;
-}
 
 .contenedor-nav{
     display: flex;
@@ -435,6 +418,11 @@ footer button{
     h1{
         font-size: 1.6rem;
     }
+
+    .busqueda input{
+        width: 9rem;
+    }
+
     .products{
         grid-template-columns: repeat(auto-fill, minmax(6rem, .2fr));
     }
