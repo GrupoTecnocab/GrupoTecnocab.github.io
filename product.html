@@ -13,11 +13,8 @@
     <div class="containermadre">
         <nav>
             <div class="contenedor-nav">
-                <div class="busqueda">
-                    <input type="text" placeholder="Busacar" id="buscador">
-                    <div class="busqueda-ico" id="searchBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="busqueda" viewBox="0 0 30 30" width="30" height="30" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;"><defs><clipPath id="__lottie_element_2"><rect width="30" height="30" x="0" y="0"></rect></clipPath></defs><g clip-path="url(#__lottie_element_2)"><g transform="matrix(1,0,0,1,0,0.18700027465820312)" opacity="1" style="display: block;"><g opacity="1" transform="matrix(1,0,0,1,13,13)"><path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" stroke-miterlimit="10" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="2" d=" M0,-9 C-4.9710001945495605,-9 -9,-4.9710001945495605 -9,0 C-9,4.9710001945495605 -4.9710001945495605,9 0,9 C4.9710001945495605,9 9,4.9710001945495605 9,0 C9,-4.9710001945495605 4.9710001945495605,-9 0,-9z"></path></g><g opacity="1" transform="matrix(1,0,0,1,22.718000411987305,22.7189998626709)"><path stroke-linecap="round" stroke-linejoin="miter" fill-opacity="0" stroke-miterlimit="10" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="2" d=" M3.2820000648498535,3.2809998989105225 C3.2820000648498535,3.2809998989105225 -3.2809998989105225,-3.2809998989105225 -3.2809998989105225,-3.2809998989105225"></path></g></g></g></svg>
-                    </div>
+                <div class="atras">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><defs></defs><title/><g data-name="Layer 50" id="Layer_50"><path class="cls-1" d="M30,29a1,1,0,0,1-.81-.41l-2.12-2.92A18.66,18.66,0,0,0,15,18.25V22a1,1,0,0,1-1.6.8l-12-9a1,1,0,0,1,0-1.6l12-9A1,1,0,0,1,15,4V8.24A19,19,0,0,1,31,27v1a1,1,0,0,1-.69.95A1.12,1.12,0,0,1,30,29ZM14,16.11h.1A20.68,20.68,0,0,1,28.69,24.5l.16.21a17,17,0,0,0-15-14.6,1,1,0,0,1-.89-1V6L3.67,13,13,20V17.11a1,1,0,0,1,.33-.74A1,1,0,0,1,14,16.11Z"/></g></svg>
                 </div>
                 <div class="logo">
                     <img src="img/logo tecnocab_.png" alt="">
@@ -192,6 +189,13 @@ function increaseQuantity(productId) {
       quantityInput.value = (currentQuantity - 1).toString();
     }
   }
+
+
+  const btnrever = document.querySelector(".atras")
+
+  btnrever.addEventListener("click",()=>{
+    window.history.back();
+  })
   
   // Llama a la función para actualizar el número de productos en el carrito al cargar la página
 

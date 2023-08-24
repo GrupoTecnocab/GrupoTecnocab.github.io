@@ -68,23 +68,18 @@ nav{
     background-color: #ffffff;
 }
 
-.busqueda-ico{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 2rem;
-    height: 2rem;
-    background-color: rgb(255, 255, 255);
+.atras{
+    background-color: #fff;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    text-align: center;
-    transition: all .6s ease;
-    transform: translate(-0.4rem,-0.1rem);
-
-
+    display: flex;
+    justify-content: center;
 }
 
-.busqueda:hover input{
-    width: 8rem;
+.atras svg{
+    width: 2rem;
+    fill: #6590CD;
 }
 
 .filtro{
